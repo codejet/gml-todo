@@ -1,8 +1,8 @@
 define([], function() {
   var config = {
-    apiKey: 'AIzaSyDCvmLZaDn5vr34wg2-1YmXC9l6CiqatsU',
+    apiKey: 'use your own api key here',
     scopes: 'https://www.googleapis.com/auth/tasks https://www.googleapis.com/auth/userinfo.profile',
-    clientId: '137781853545.apps.googleusercontent.com'
+    clientId: 'use your own client id here',
   };
   
   _.templateSettings = {
