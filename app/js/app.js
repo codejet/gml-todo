@@ -12,7 +12,7 @@ function(ApiManager, AppView, AuthView) {
     this.views.auth.render();
 
     this.connectGapi();
-  }
+  };
 
   App.prototype = {
     views: {},
