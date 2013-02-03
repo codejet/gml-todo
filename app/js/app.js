@@ -25,8 +25,7 @@ function(ApiManager, AppView, AuthView, ListMenuView, TaskLists) {
       var self = this;
       this.apiManager = new ApiManager(this);
       this.apiManager.on('ready', function() {
-        self.collections.lists.fetch({ data: { userId: '@me' }, success: function(res) {
-          console.log(res);
+        self.collections.lists.fetch({ data: { userId: '@me' }, success: function(res) {          
           self.views.listMenu.render();
         }});
       });
