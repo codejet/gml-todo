@@ -6,7 +6,8 @@ define(['text!templates/tasks/task.html'], function(template) {
     template: _.template(template),
 
     events: {
-      'click': 'open'
+      'click': 'open',
+      'change .check-task': 'toggle'
     },
 
     initialize: function(options) {
@@ -28,11 +29,26 @@ define(['text!templates/tasks/task.html'], function(template) {
       }
       this.$el.addClass('active');
       this.parentView.activeTaskView = this;
+      this.parentView.editTask(this.model);
     },
 
     close: function(e) {
       this.$el.removeClass('active');
+    },
+    
+    toggle: function() {
+      var id = this.model.get('id'),
+          $el = this.$el.find('.check-task');        
+    
+      this.model.set('status', $el.attr('checked') ? 'completed' : 'needsAction');
+      if (this.model.get('status') === 'needsAction') {
+        this.model.set('completed', null);
+      }
+    
+      this.model.save();
+      return false;
     }
+    
   });
 
   return TaskView;
