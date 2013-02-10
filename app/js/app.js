@@ -19,7 +19,7 @@ function(ApiManager, AppView, AuthView, ListMenuView, TaskLists) {
   };
 
   App.prototype = {
-    views: {},
+    views: {},    
     collections: {},
     connectGapi: function() {
       var self = this;
