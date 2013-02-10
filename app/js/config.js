@@ -1,13 +1,13 @@
 define([], function() {
   var config = {
-    apiKey: 'AIzaSyCQeRm6npmnmuQlEaLI7ESdkAncE77eSHk',    
+    apiKey: 'use your own api key here',
     scopes: 'https://www.googleapis.com/auth/tasks https://www.googleapis.com/auth/userinfo.profile',
-    clientId: '677014185305.apps.googleusercontent.com'
+    clientId: 'use your own client id here',
   };
-
+  
   _.templateSettings = {
     interpolate: /\{\{(.+?)\}\}/g
   };
-
+  
   return config;
 });
