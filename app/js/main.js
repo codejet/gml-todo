@@ -10,7 +10,7 @@ requirejs.config({
       exports: '_'
     },
     'lib/backbone-min': {
-      deps: ['lib/underscore-min']
+      deps: ['lib/lodash-min']
     , exports: 'Backbone'
     },
     'app': {
