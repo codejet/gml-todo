@@ -6,7 +6,7 @@ requirejs.config({
   },
 
   shim: {
-    'lib/underscore-min': {
+    'lib/lodash-min': {
       exports: '_'
     },
     'lib/backbone-min': {
@@ -14,7 +14,7 @@ requirejs.config({
     , exports: 'Backbone'
     },
     'app': {
-      deps: ['lib/underscore-min', 'lib/backbone-min']
+      deps: ['lib/lodash-min', 'lib/backbone-min']
     }
   }
 });
