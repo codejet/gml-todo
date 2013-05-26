@@ -15,7 +15,8 @@ function(template, AddListView, EditListView) {
     events: {      
       'click #add-list-button': 'addList',
       'click #edit-list-button': 'editList',
-      'click #delete-list-button': 'deleteList'
+      'click #delete-list-button': 'deleteList',
+      'click .clear-complete': 'clearComplete'      
     },
 
     initialize: function() {
@@ -46,7 +47,16 @@ function(template, AddListView, EditListView) {
         bTask.views.activeListMenuItem.model.destroy();        
       }
       return false;
-    }   
+    },
+    
+    clearComplete: function() {
+      var list = bTask.views.activeListMenuItem.model;
+      bTask.collections.tasks.clear(list.get('id'), { success: function() {
+        // Show some kind of user feedback
+      }});
+      return false;
+    }
+    
   });
 
   return AppView;

@@ -1,22 +1,22 @@
-define(['text!templates/tasks/task.html'], function(template) {
+define(['text!templates/tasks/task.html', 'views/tasks/edit'], function(template, TaskEditView) {
   var TaskView = Backbone.View.extend({
     tagName: 'li',
     className: 'controls well task row',
-
     template: _.template(template),
-
     events: {
-      'click': 'open',
-      'change .check-task': 'toggle'
+      'click': 'open'
+    , 'change .check-task': 'toggle'
     },
 
     initialize: function(options) {
       this.parentView = options.parentView;
+      this.model.on('change', this.render, this);
+      this.model.on('destroy', this.remove, this);
+      this.model.on('remove', this.remove, this);
     },
 
     render: function(e) {
       var $el = $(this.el);
-      $el.data('taskId', this.model.get('id'));
       $el.html(this.template(this.model.toJSON()));
       $el.find('.check-task').attr('checked', this.model.get('status') === 'completed');
 
@@ -35,20 +35,20 @@ define(['text!templates/tasks/task.html'], function(template) {
     close: function(e) {
       this.$el.removeClass('active');
     },
-    
+
     toggle: function() {
-      var id = this.model.get('id'),
-          $el = this.$el.find('.check-task');        
-    
+      var id = this.model.get('id')
+        , $el = this.$el.find('.check-task')
+        ;
+
       this.model.set('status', $el.attr('checked') ? 'completed' : 'needsAction');
       if (this.model.get('status') === 'needsAction') {
         this.model.set('completed', null);
       }
-    
+
       this.model.save();
       return false;
     }
-    
   });
 
   return TaskView;

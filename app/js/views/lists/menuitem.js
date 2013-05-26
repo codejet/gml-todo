@@ -2,9 +2,7 @@ define(['text!templates/lists/menuitem.html', 'views/tasks/index', 'collections/
   var ListMenuItemView = Backbone.View.extend({
     tagName: 'li',
     className: 'list-menu-item',
-
     template: _.template(template),
-
     events: {
       'click': 'open'
     },
@@ -17,28 +15,29 @@ define(['text!templates/lists/menuitem.html', 'views/tasks/index', 'collections/
 
     render: function() {
       var $el = $(this.el);
-      $el.data('listId', this.model.get('id'));
       $el.html(this.template(this.model.toJSON()));
-      bTask.routes.navigate('lists/' + this.model.get('id'));
       return this;
     },
 
-     open: function() {
+    open: function() {
       if (bTask.views.activeListMenuItem) {
         bTask.views.activeListMenuItem.$el.removeClass('active');
       }
-    
+
       bTask.views.activeListMenuItem = this;
       this.$el.addClass('active');
-    
+
       // Render the tasks
       if (bTask.views.tasksIndexView) {
         bTask.views.tasksIndexView.remove();
       }
-          
-      bTask.views.tasksIndexView = new TasksIndexView({ collection: new Tasks({ tasklist: this.model.get('id') }), model: this.model });      
+
+      var tasks = new Tasks({ tasklist: this.model.get('id') });
+      bTask.collections.tasks = tasks;
+      bTask.views.tasksIndexView = new TasksIndexView({ collection: tasks, model: this.model });
       bTask.views.app.$el.find('#tasks-container').html(bTask.views.tasksIndexView.render().el);
-    
+      bTask.routes.navigate('lists/' + this.model.get('id'));
+
       return false;
     }
   });
