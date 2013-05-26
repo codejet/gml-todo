@@ -27,18 +27,18 @@ function(template, AddListView, EditListView) {
       return this;
     },
     
-    listForm: function(form) {
-      this.$el.find('#list-editor').html(form.render().el);
+    listForm: function(form) {      
+      this.$el.find('#list-editor').html(form.render().el).show();
       form.$el.find('input:first').focus();
     
       return false;
     },
     
-    addList: function() {
+    addList: function() {      
       return this.listForm(new AddListView({ model: new bTask.collections.lists.model({ title: '' }) }));
     },
     
-    editList: function() {
+    editList: function() {      
       return this.listForm(new EditListView({ model: bTask.views.activeListMenuItem.model }));    
     },
     

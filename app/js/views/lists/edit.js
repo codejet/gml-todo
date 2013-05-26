@@ -26,7 +26,7 @@ define(['text!templates/lists/form.html'], function(template) {
 
     submit: function() {
       var self = this,
-          title = this.$el.find('input[name="title"]').val();
+          title = this.$el.find('input[name="title"]').val();        
 
       this.model.save({ title: title }, {
         success: function() {

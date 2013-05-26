@@ -14,7 +14,7 @@ requirejs.config({
     , exports: 'Backbone'
     },
     'app': {
-      deps: ['lib/lodash-min', 'lib/backbone-min']
+      deps: ['lib/lodash-min', 'lib/backbone-min', 'lib/jquery.sortable']
     }
   }
 });
