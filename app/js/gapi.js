@@ -105,6 +105,7 @@ define(['config'], function(config) {
       case 'delete':
         requestContent['resource'] = model.toJSON();
         request = gapi.client.tasks[model.url].delete(options.data);
+        console.log(request);
         Backbone.gapiRequest(request, method, model, options);
       break;
 

@@ -1,13 +1,15 @@
 define([
   'gapi',
+  'routes',
   'views/app',
   'views/auth',
   'views/lists/menu',
   'collections/tasklists',
 ],
        
-function(ApiManager, AppView, AuthView, ListMenuView, TaskLists) {
+function(ApiManager, Routes, AppView, AuthView, ListMenuView, TaskLists) {
   var App = function() {
+    this.routes = new Routes();
     this.views.app = new AppView();
     this.views.app.render();
     this.views.auth = new AuthView(this);
@@ -27,6 +29,7 @@ function(ApiManager, AppView, AuthView, ListMenuView, TaskLists) {
       this.apiManager.on('ready', function() {
         self.collections.lists.fetch({ data: { userId: '@me' }, success: function(res) {          
           self.views.listMenu.render();
+          Backbone.history.start();
         }});
       });
     }

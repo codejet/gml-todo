@@ -43,7 +43,7 @@ function(template, AddListView, EditListView) {
     
     deleteList: function() {
       if (confirm('Are you sure you want to delete that list?')) {
-        bTask.views.activeListMenuItem.model.destroy();
+        bTask.views.activeListMenuItem.model.destroy();        
       }
       return false;
     }   
